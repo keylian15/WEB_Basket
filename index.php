@@ -1,62 +1,45 @@
 <?php
-/**
- * NBA Predictor - Point d'entrée principal de l'application
- * 
- * Ce fichier sert de contrôleur frontal pour toutes les requêtes.
- * Il initialise l'application et redirige vers les contrôleurs appropriés.
- */
-
 // Démarrer la session
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Définir la racine de l'application
-define('ROOT_PATH', __DIR__);
+// Chargement des contrôleurs
+require_once 'controllers/HomeController.php';
+require_once 'controllers/AuthController.php';
 
-// Charger les fichiers de configuration
-require_once 'config/config.php';
-require_once 'config/database.php';
+// Création des instances de contrôleurs
+$homeController = new HomeController();
+$authController = new AuthController();
 
-// Charger les fonctions utilitaires
-require_once 'includes/functions.php';
+// Routage simple basé sur le paramètre 'page' dans l'URL
+$page = $_GET['page'] ?? '';
 
-// Charger l'autoloader pour les classes
-require_once 'autoload.php';
-
-// Obtenir l'URL demandée
-$request = isset($_GET['url']) ? $_GET['url'] : '';
-$url = trim($request, '/');
-$url = filter_var($url, FILTER_SANITIZE_URL);
-$url = explode('/', $url);
-
-// Déterminer le contrôleur à charger
-$controller = !empty($url[0]) ? $url[0] : 'home';
-$method = isset($url[1]) ? $url[1] : 'index';
-$params = array_slice($url, 2);
-
-// Formater le nom du contrôleur
-$controllerName = ucfirst($controller) . 'Controller';
-$controllerFile = 'controllers/' . $controllerName . '.php';
-
-// Vérifier si le contrôleur existe
-if (file_exists($controllerFile)) {
-    require_once $controllerFile;
+// Gestion des routes
+switch ($page) {
+    // Routes d'authentification
+    case 'login':
+        $authController->showLoginForm();
+        break;
     
-    // Instancier le contrôleur
-    $controllerInstance = new $controllerName();
+    case 'login-process':
+        $authController->login();
+        break;
     
-    // Vérifier si la méthode existe
-    if (method_exists($controllerInstance, $method)) {
-        // Appeler la méthode avec les paramètres
-        call_user_func_array([$controllerInstance, $method], $params);
-    } else {
-        // Méthode non trouvée, rediriger vers la page 404
-        require_once 'controllers/ErrorController.php';
-        $errorController = new ErrorController();
-        $errorController->notFound();
-    }
-} else {
-    // Contrôleur non trouvé, rediriger vers la page 404
-    require_once 'controllers/ErrorController.php';
-    $errorController = new ErrorController();
-    $errorController->notFound();
+    case 'register':
+        $authController->showRegisterForm();
+        break;
+    
+    case 'register-process':
+        $authController->register();
+        break;
+    
+    case 'logout':
+        $authController->logout();
+        break;
+    
+    // Page d'accueil par défaut
+    default:
+        $homeController->index();
+        break;
 }
