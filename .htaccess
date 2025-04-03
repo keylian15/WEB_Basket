@@ -1,32 +1,16 @@
 # Activer le moteur de réécriture
 RewriteEngine On
 
-# Empêcher l'accès direct aux fichiers PHP dans les dossiers models, views et controllers
-RewriteRule ^(models|views|controllers)/ - [F,L]
+# Rediriger toutes les requêtes vers index.php sauf si fichier ou répertoire existant
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?action=$1 [L,QSA]
 
-# Bloquer l'accès au fichier .env
-<Files .env>
-    Order allow,deny
-    Deny from all
-</Files>
-
-# Bloquer l'accès aux fichiers commençant par dot (.)
-<FilesMatch "^\.">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-# Définir le fuseau horaire par défaut
-php_value date.timezone "Europe/Paris"
-
-# Empêcher l'affichage des erreurs en production
-php_flag display_errors Off
-php_flag log_errors On
-php_value error_log logs/error_log.log
-
-# Protection contre les injections PHP
-Options -ExecCGI
-AddHandler cgi-script .php .pl .py .jsp .asp .htm .shtml .sh .cgi
+# Empêcher l'accès direct aux répertoires models et views
+RewriteRule ^(models|views)/ - [F,L]
 
 # Désactiver la consultation des répertoires
 Options -Indexes
+
+# Définir le fuseau horaire par défaut
+php_value date.timezone "Europe/Paris"
