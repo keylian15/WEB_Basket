@@ -38,7 +38,7 @@
             color: white !important;
         }
         
-        .nav-link {
+        nav .nav-link {
             color: rgba(255, 255, 255, 0.85) !important;
         }
         
