@@ -21,7 +21,7 @@
                             <i class="fas fa-info-circle fs-4 me-3"></i>
                             <div>
                                 <h5 class="alert-heading mb-1">Authentification requise</h5>
-                                <p class="mb-0">L'accès à l'API nécessite une clé d'authentification. Consultez la documentation pour plus de détails.</p>
+                                <p class="mb-0">L'accès  à l'API nécessite de s'identifier. Consultez la documentation pour plus de détails.</p>
                             </div>
                         </div>
                     </div>
@@ -47,10 +47,10 @@
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body p-4 text-center">
                     <i class="fas fa-key fa-3x text-primary mb-3"></i>
-                    <h3 class="h5">Obtenir une clé API</h3>
-                    <p class="mb-0">Contactez notre équipe pour obtenir une clé API afin d'accéder à nos services.</p>
+                    <h3 class="h5">Obtenir un compte</h3>
+                    <p class="mb-0">Contactez notre équipe pour obtenir un compte afin d'accéder à nos services.</p>
                     <a href="mailto:api@nbapredictor.com" class="btn btn-outline-primary mt-3">
-                        <i class="fas fa-envelope me-2"></i>Demander une clé
+                        <i class="fas fa-envelope me-2"></i>Demander un compte
                     </a>
                 </div>
             </div>

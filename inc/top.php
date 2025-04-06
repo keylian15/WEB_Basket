@@ -19,7 +19,7 @@
                   'equipes' => ['title' => 'Équipes', 'icon' => 'fa-shield-alt'],
                   'joueurs' => ['title' => 'Joueurs', 'icon' => 'fa-user-alt'],
                   'matchs' => ['title' => 'Matchs', 'icon' => 'fa-trophy'],
-                  'predictions' => ['title' => 'Prédictions', 'icon' => 'fa-chart-line'],
+                  'prediction' => ['title' => 'Prédictions', 'icon' => 'fa-chart-line'],
                   'classement' => ['title' => 'Classement', 'icon' => 'fa-list-ol'],
                 );
 
