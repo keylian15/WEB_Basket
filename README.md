@@ -1100,14 +1100,11 @@ Run the test suite using the following command:
 
 ---
 
-## License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
 ## Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
+<a href="https://github.com{/keylian15/WEB_Basket/}graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=keylian15/WEB_Basket">
+</a>
 
 ---
+
+_This documentation was generated using [readme-ai](https://readme-ai.streamlit.app)._
